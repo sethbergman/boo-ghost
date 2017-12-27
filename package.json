@@ -11,7 +11,8 @@
         "mobile": "assets/screenshot-mobile.jpg"
     },
     "author": {
-        "name": "Seth Bergman",
+        "name": "Ghost Foundation",
+        "contributor": "Seth Bergman",
         "email": "seth.atxwebs@gmail.com",
         "url": "https://blog.sethbergman.com"
     },
