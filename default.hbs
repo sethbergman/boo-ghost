@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    {{!-- Document Settings --}}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{!-- Base Meta --}}
+    <title>{{meta_title}}</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{!-- Styles'n'Scripts --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "built/prism.css"}}" />
+    {{!-- This tag outputs SEO meta+structured data and other important settings --}}
+    {{ghost_head}}
+
+</head>
+<body class="{{body_class}}">
+
+    <div class="site-wrapper">
+
+        {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+        {{{body}}}
+
+        {{!-- The footer at the very bottom of the screen --}}
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}}</section>
+                <nav class="site-footer-nav">
+                    <a href="{{@blog.url}}">Latest Posts</a>
+                    {{#if @blog.facebook}}<a href="{{facebook_url @blog.facebook}}" target="_blank" rel="noopener">Facebook</a>{{/if}}
+                    {{#if @blog.twitter}}<a href="{{twitter_url @blog.twitter}}" target="_blank" rel="noopener">Twitter</a>{{/if}}
+                </nav>
+            </div>
+        </footer>
+        <!-- <footer class="site-footer outer" cfapps-selector="body > .site-wrapper > .site-footer.outer">
+          
+          <cloudflare-app app="social-icons" data-position="center">
+          <a href="https://facebook.com/seth.a.bergman" style="height: 3em; width: 3em;" target="_blank">
+            
+  <svg data-icon="facebook" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100"><circle fill="#3b5998" cx="50" cy="50" r="48"></circle>
+    <path fill="#fff" transform="translate(25,25) scale(0.5)" d="M83.334 0h-66.666c-9.167 0-16.668 7.501-16.668 16.669v66.663c0 9.174 7.501 16.669 16.668 16.669l66.666-0c9.168 0 16.666-7.495 16.666-16.669v-66.662c0-9.167-7.498-16.669-16.666-16.669zM85.019 50h-16.269v43.75h-18.75v-43.75h-9.036v-14.313h9.036v-9.296c0-12.631 5.448-20.142 20.3-20.142h17.114v15.485h-13.978c-4.149-0.007-4.663 2.163-4.663 6.202l-0.023 7.749h18.75l-2.481 14.313z"></path>
+  </svg>
+          </a>
+        
+          <a href="https://github.com/sethbergman" style="height: 3em; width: 3em;" target="_blank">
+            
+  <svg data-icon="github" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100"><circle fill="#24292e" cx="50" cy="50" r="48"></circle>
+    <path fill="#fff" transform="translate(25,25) scale(0.5)" d="M50 0c-27.614 0-50 22.386-50 50s22.386 50 50 50 50-22.386 50-50-22.386-50-50-50zM79.693 79.693c-3.859 3.859-8.351 6.888-13.35 9.003-1.27 0.537-2.56 1.009-3.867 1.415v-7.494c0-3.939-1.351-6.836-4.053-8.691 1.693-0.163 3.247-0.391 4.663-0.684s2.913-0.716 4.492-1.27 2.995-1.213 4.248-1.978 2.458-1.758 3.613-2.979 2.124-2.604 2.905-4.15 1.4-3.402 1.855-5.566 0.684-4.549 0.684-7.153c0-5.046-1.644-9.342-4.932-12.891 1.497-3.906 1.335-8.154-0.488-12.744l-1.221-0.146c-0.846-0.098-2.368 0.26-4.565 1.074s-4.663 2.148-7.397 4.004c-3.874-1.074-7.894-1.611-12.061-1.611-4.199 0-8.203 0.537-12.012 1.611-1.725-1.172-3.361-2.14-4.907-2.905-1.546-0.765-2.783-1.286-3.711-1.563s-1.79-0.448-2.588-0.513-1.31-0.081-1.538-0.049-0.391 0.065-0.488 0.098c-1.823 4.622-1.986 8.871-0.488 12.744-3.288 3.548-4.932 7.845-4.932 12.891 0 2.604 0.228 4.989 0.684 7.153s1.074 4.020 1.855 5.566 1.75 2.93 2.905 4.15 2.36 2.213 3.613 2.979 2.669 1.424 4.248 1.978 3.076 0.977 4.492 1.27 2.97 0.521 4.663 0.684c-2.669 1.823-4.004 4.72-4.004 8.691v7.64c-1.474-0.439-2.928-0.957-4.355-1.561-4.999-2.115-9.491-5.144-13.35-9.003-3.859-3.859-6.888-8.351-9.003-13.35-2.187-5.172-3.296-10.67-3.296-16.343s1.109-11.171 3.297-16.343c2.115-4.999 5.144-9.491 9.003-13.35s8.351-6.888 13.35-9.003c5.172-2.188 10.67-3.297 16.343-3.297s11.171 1.109 16.343 3.297c5 2.115 9.491 5.144 13.35 9.003 3.859 3.859 6.888 8.351 9.003 13.35 2.187 5.172 3.296 10.67 3.296 16.343s-1.109 11.171-3.297 16.343c-2.115 4.999-5.144 9.491-9.003 13.35z"></path>
+  </svg>
+          </a>
+        
+          <a href="https://linkedin.com/in/sethbergman" style="height: 3em; width: 3em;" target="_blank">
+            
+  <svg data-icon="linkedin" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100"><circle fill="#0073b2" cx="50" cy="50" r="48"></circle>
+    <path fill="#fff" transform="translate(25,25) scale(0.5)" d="M83.203 0h-66.406c-9.238 0-16.797 7.559-16.797 16.797v66.406c0 9.238 7.559 16.797 16.797 16.797h66.406c9.238 0 16.797-7.559 16.797-16.797v-66.406c0-9.238-7.559-16.797-16.797-16.797zM37.5 81.25h-12.5v-43.75h12.5v43.75zM31.25 31.25c-3.452 0-6.25-2.798-6.25-6.25s2.798-6.25 6.25-6.25 6.25 2.798 6.25 6.25-2.798 6.25-6.25 6.25zM81.25 81.25h-12.5v-25c0-3.452-2.798-6.25-6.25-6.25s-6.25 2.798-6.25 6.25v25h-12.5v-43.75h12.5v7.761c2.578-3.541 6.519-7.761 10.938-7.761 7.767 0 14.063 6.996 14.063 15.625v28.125z"></path>
+  </svg>
+          </a>
+        
+          <a href="https://stackoverflow.com/users/5200242/seth-bergman" style="height: 3em; width: 3em;" target="_blank">
+            
+  <svg data-icon="stackoverflow" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100"><circle fill="#fafafb" stroke="#ccc" stroke-width="4" cx="50" cy="50" r="48"></circle>
+    <path fill="#f48024" transform="translate(25,25) scale(0.5)" d="M100 62.5v37.5h-100v-37.5h12.5v25h75v-25zM18.75 68.75h62.5v12.5h-62.5zM20.23 55.221l2.705-12.204 61.019 13.525-2.705 12.204zM27.31 30.133l5.282-11.329 56.644 26.412-5.282 11.329zM96.848 35.3l-7.61 9.917-49.585-38.048 5.502-7.17h5.688z"></path>
+  </svg>
+          </a>
+        
+          <a href="https://twitter.com/seth_bergman" style="height: 3em; width: 3em;" target="_blank">
+            
+  <svg data-icon="twitter" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100"><circle fill="#00aced" cx="50" cy="50" r="48"></circle>
+    <path fill="#fff" transform="translate(25,25) scale(0.5)" d="M100,18.684c-3.68,1.641-7.633,2.75-11.783,3.249 c4.235-2.554,7.488-6.598,9.021-11.417c-3.964,2.365-8.354,4.082-13.028,5.008c-3.742-4.011-9.074-6.517-14.975-6.517 c-11.33,0-20.517,9.239-20.517,20.636c0,1.617,0.181,3.192,0.531,4.703C32.198,33.484,17.081,25.27,6.962,12.784 c-1.766,3.048-2.778,6.593-2.778,10.374c0,7.16,3.622,13.477,9.127,17.177c-3.363-0.106-6.527-1.035-9.292-2.581 c-0.002,0.087-0.002,0.173-0.002,0.26c0,9.999,7.072,18.339,16.458,20.235c-1.722,0.472-3.534,0.724-5.405,0.724 c-1.322,0-2.607-0.13-3.86-0.37c2.611,8.198,10.188,14.165,19.165,14.331c-7.021,5.535-15.868,8.834-25.48,8.834 c-1.656,0-3.289-0.098-4.894-0.288c9.08,5.855,19.864,9.272,31.449,9.272c37.736,0,58.373-31.446,58.373-58.717 c0-0.895-0.02-1.784-0.06-2.67C93.771,26.456,97.25,22.821,100,18.684z"></path>
+  </svg>
+          </a>
+        </cloudflare-app>
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="http://blog.sethbergman.com">Seth Bergman | Full Stack Engineer</a> © 2017</section>
+                <nav class="site-footer-nav">
+                    <a href="https://blog.sethbergman.com">Latest Posts</a>
+                    <a href="https://www.facebook.com/theprogressiveweb" target="_blank" rel="noopener">Facebook</a>
+                    <a href="https://twitter.com/seth_bergman" target="_blank" rel="noopener">Twitter</a>
+                </nav>
+            </div>
+        </footer> -->
+
+    </div>
+
+    {{!-- The big email subscribe modal content --}}
+    {{#if @labs.subscribers}}
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-overlay-close" href="#"></a>
+        <div class="subscribe-overlay-content">
+            {{#if @blog.logo}}
+                <img class="subscribe-overlay-logo" src="{{@blog.logo}}" alt="{{@blog.title}}" />
+            {{/if}}
+            <h1 class="subscribe-overlay-title">Subscribe to {{@blog.title}}</h1>
+            <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+            {{subscribe_form placeholder="youremail@example.com"}}
+        </div>
+    </div>
+    {{/if}}
+
+    {{!-- jQuery + Fitvids, which makes all video embeds responsive --}}
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/prism.js"}}"></script>
+
+    {{#if pagination.pages}}
+    <script>
+        var maxPages = parseInt('{{pagination.pages}}');
+    </script>
+    <script src="{{asset "js/infinitescroll.js"}}"></script>
+    {{/if}}
+
+    {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
+    {{{block "scripts"}}}
+
+    {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
+    {{ghost_foot}}
+
+</body>
+</html>
